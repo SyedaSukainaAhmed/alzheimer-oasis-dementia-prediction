@@ -35,10 +35,16 @@ python own_analysis_alz.py --csv data/oasis_longitudinal.csv
 
 Sample: 336 visits from 136 subjects (after removing 'Converted' subjects).
 
+![Model comparison](model_comparison.png)
+
+![Permutation importance](feature_importance.png)
+
+![Calibration](calibration.png)
+
 Extensions:
 - First-visit-only (one row per person, logistic regression): AUC 0.745 (95% range 0.626 – 0.851).
 - Full logistic model minus age-only model, same folds: mean AUC difference 0.298 (bootstrap 95% interval 0.256 – 0.339); the full model was better in 100% of folds.
-- Calibration: see `results_alz/calibration.png` (Brier score 0.1893).
+- Calibration plot below (Brier score 0.1893).
 
 Key observations:
 - Ignoring subject grouping inflates the random forest AUC from about 0.69 to 0.88, because repeated visits of the same person leak across train and test.
@@ -63,7 +69,7 @@ Within each sex (features without sex): women 0.772 (78 subjects, range 0.530 �
 
 Age alone is at chance in this cohort, but adding age to brain volume raises AUC from 0.68 to 0.74, which fits the idea that brain volume has to be interpreted relative to age. Removing sex lowers the full-model AUC only slightly (0.764 to 0.744), and the signal is present in both sexes, so the sex imbalance does not explain the result. The intervals are wide because there are only 136 subjects, so none of these differences should be treated as conclusive.
 
-![Feature ablation](results_alz/feature_ablation.png)
+![Feature ablation](feature_ablation.png)
 
 ## Limitations
 - Small cohort (about 150 subjects), single study, no external validation.
