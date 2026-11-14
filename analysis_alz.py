@@ -14,8 +14,8 @@ Design choices (each one avoids a common mistake):
   * CDR and MMSE are excluded by default. CDR is the clinical rating used to
     define dementia, so using it to predict dementia is circular.
   * ASF is excluded because it is a deterministic function of eTIV (redundant).
-  * 'Converted' subjects (non-demented at first, demented later) are removed so
-    the label is unambiguous.
+  * 'Converted' subjects (non-demented at first, demented later) are removed
+    entirely (all of their visits), so the label is unambiguous.
   * Missing values (SES) are imputed inside each fold, not before splitting.
   * An age-only baseline shows whether brain volume (nWBV) adds information
     beyond age.
@@ -47,7 +47,14 @@ SPLITS = 5
 
 def load(path, include_cognitive):
     df = pd.read_csv(path)
+    # Drop every visit of any subject who is labelled "Converted" at any visit.
+    converted = df.loc[df["Group"] == "Converted", "Subject ID"].unique()
+    df = df[~df["Subject ID"].isin(converted)]
     df = df[df["Group"].isin(["Demented", "Nondemented"])].copy()
+    # Each remaining subject must have a single label across all visits.
+    if (df.groupby("Subject ID")["Group"].nunique() > 1).any():
+        raise ValueError("Some subjects have both Demented and Nondemented visits; "
+                         "check the Group column.")
     df["y"] = (df["Group"] == "Demented").astype(int)
     df["Male"] = (df["M/F"] == "M").astype(int)
     feats = ["Age", "EDUC", "SES", "Male", "eTIV", "nWBV"]
@@ -87,8 +94,8 @@ def run_cv(df, feats, kind, grouped=True):
 
 def summarise(a):
     return {"mean": round(float(a.mean()), 3),
-            "ci95_low": round(float(np.percentile(a, 2.5)), 3),
-            "ci95_high": round(float(np.percentile(a, 97.5)), 3)}
+            "range95_low": round(float(np.percentile(a, 2.5)), 3),
+            "range95_high": round(float(np.percentile(a, 97.5)), 3)}
 
 
 def main():

@@ -1,0 +1,8 @@
+# OASIS data may not be redistributed; keep it out of the repository
+data/
+*.csv
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

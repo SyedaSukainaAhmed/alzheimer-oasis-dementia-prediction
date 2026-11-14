@@ -69,7 +69,7 @@ def main():
     a, n = first_visit(df, feats)
     summary["first_visit_only"] = {
         "n_subjects": int(n), "auc_mean": round(float(a.mean()), 3),
-        "ci95": [round(float(np.percentile(a, 2.5)), 3), round(float(np.percentile(a, 97.5)), 3)]}
+        "range95": [round(float(np.percentile(a, 2.5)), 3), round(float(np.percentile(a, 97.5)), 3)]}
     print("First-visit-only LR AUC:", summary["first_visit_only"])
 
     # 2 and 3. Grouped out-of-fold predictions
