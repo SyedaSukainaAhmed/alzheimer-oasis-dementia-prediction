@@ -88,7 +88,7 @@ Python, pandas, NumPy, scikit-learn, Matplotlib.
 ## Citation
 This analysis uses the OASIS-2 longitudinal MRI dataset (Open Access Series of Imaging Studies), which is not included in this repository:
 
-Marcus DS, Fotenos AF, Csernansky JG, Morris JC, Buckner RL. Open Access Series of Imaging Studies: Longitudinal MRI Data in Nondemented and Demented Older Adults. Journal of Cognitive Neuroscience. 2010;22(12):2677-2684.
+Marcus DS, Fotenos AF, Csernansky JG, Morris JC, Buckner RL. Open Access Series of Imaging Studies (OASIS): Longitudinal MRI Data in Nondemented and Demented Older Adults. Journal of Cognitive Neuroscience. 2010;22(12):2677-2684. doi:10.1162/jocn.2009.21407 
 
 ## License
 MIT (see `LICENSE`).
