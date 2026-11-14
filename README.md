@@ -86,7 +86,7 @@ Age alone is at chance in this cohort, but adding age to brain volume raises AUC
 Python, pandas, NumPy, scikit-learn, Matplotlib.
 
 ## Citation
-This analysis uses the OASIS-2 dataset. Please also cite the data source:
+This analysis uses the OASIS-2 longitudinal MRI dataset (Open Access Series of Imaging Studies), which is not included in this repository:
 
 Marcus DS, Fotenos AF, Csernansky JG, Morris JC, Buckner RL. Open Access Series of Imaging Studies: Longitudinal MRI Data in Nondemented and Demented Older Adults. Journal of Cognitive Neuroscience. 2010;22(12):2677-2684.
 
